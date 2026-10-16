@@ -40,6 +40,7 @@ header {
 .wordmark pre {
     margin: 3rem auto;
     text-align: center;
+    line-height: 100%;
 }
 
 .issue-date-row {
