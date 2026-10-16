@@ -2,6 +2,11 @@
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+
+	const now = new Date();
+	const options = { month: 'short', year: 'numeric', timeZone: 'UTC' };
+	let formattedDate = new Intl.DateTimeFormat('en-US', options).format(now);
+	formattedDate = formattedDate.toUpperCase();
 </script>
 
 <svelte:head>
@@ -27,8 +32,8 @@ OOOOO OOOOO O     OOOOO OOOOO OOOOO O   O OOOOO
 </div>
 
 <div class="issue-date-row">
-	<div class="left">NUMBER 1</div>
-	<div class="right">JAN 2027</div>
+	<div class="left">NUMBER 0</div>
+	<div class="right">{formattedDate}</div>
 </div>
 </header>
 <div class="credits">
