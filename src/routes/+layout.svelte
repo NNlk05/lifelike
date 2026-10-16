@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { LayoutProps } from './$types';
+	import { resolve } from '$app/paths';
 
 	let { children }: LayoutProps = $props();
 
-	const now = new Date();
+	const now = $state(new Date());
 	const options = { month: 'short', year: 'numeric', timeZone: 'UTC' } as const;
-	let formattedDate = $state(new Intl.DateTimeFormat('en-US', options).format(now));
+	let formattedDate = $derived(new Intl.DateTimeFormat('en-US', options).format(now));
 	formattedDate = formattedDate.toUpperCase();
 </script>
 
@@ -35,9 +36,15 @@ OOOOO OOOOO O     OOOOO OOOOO OOOOO O   O OOOOO
 	<div class="left">NUMBER 0</div>
 	<div class="right">{formattedDate}</div>
 </div>
+<nav>
+	<ul>
+		<li><a href={resolve("/")}>Home</a></li>
+		<li><a href={resolve("/articles")}>Articles</a></li>
+	</ul>
+</nav>
 </header>
 <div class="credits">
-	<div class="publisher">Chief Editor and Publisher - NNlk05</div>
+	<div class="publisher">• Chief Editor and Publisher - NNlk05 •</div>
 	<!-- More credits here if needed -->
 </div>
 <main>
