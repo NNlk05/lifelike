@@ -4,8 +4,8 @@
 	let { children }: LayoutProps = $props();
 
 	const now = new Date();
-	const options = { month: 'short', year: 'numeric', timeZone: 'UTC' };
-	let formattedDate = new Intl.DateTimeFormat('en-US', options).format(now);
+	const options = { month: 'short', year: 'numeric', timeZone: 'UTC' } as const;
+	let formattedDate = $state(new Intl.DateTimeFormat('en-US', options).format(now));
 	formattedDate = formattedDate.toUpperCase();
 </script>
 
