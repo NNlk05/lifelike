@@ -2,12 +2,11 @@
 	import type { LayoutProps } from './$types';
 	import { resolve } from '$app/paths';
 
-	let { children }: LayoutProps = $props();
+	let { children, data }: LayoutProps = $props();
 
 	const now = $state(new Date());
 	const options = { month: 'short', year: 'numeric', timeZone: 'UTC' } as const;
-	let formattedDate = $derived(new Intl.DateTimeFormat('en-US', options).format(now));
-	formattedDate = formattedDate.toUpperCase();
+	let formattedDate = $derived.by(() => new Intl.DateTimeFormat('en-US', options).format(now).toUpperCase());
 </script>
 
 <svelte:head>
@@ -40,6 +39,14 @@ OOOOO OOOOO O     OOOOO OOOOO OOOOO O   O OOOOO
 	<ul>
 		<li><a href={resolve("/")}>Home</a></li>
 		<li><a href={resolve("/articles")}>Articles</a></li>
+		{#if data.session}
+			<li><a href={resolve("/dashboard")}>Dashboard</a></li>
+			<li><a href={resolve("/auth/logout")} method="POST">Logout</a></li>
+			<li><span>{data.user?.username}</span></li>
+		{:else}
+			<li><a href={resolve("/auth/login")}>Login</a></li>
+			<li><a href={resolve("/auth/register")}>Register</a></li>
+		{/if}
 	</ul>
 </nav>
 </header>
