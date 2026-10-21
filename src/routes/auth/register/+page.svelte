@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+
 	let username = $state('');
 	let password = $state('');
 	let error = $state('');
@@ -70,5 +72,5 @@
 </form>
 
 <p>
-	Already have an account? <a href="/auth/login">Login</a>
+	Already have an account? <a href="{resolve("/auth/login")}">Login</a>
 </p>

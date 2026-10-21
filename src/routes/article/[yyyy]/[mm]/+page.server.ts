@@ -18,6 +18,8 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	return { year, month, articles };
 };
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getArticlesForMonth(year: number, month: number) {
 	return []; //TODO: db
 }
